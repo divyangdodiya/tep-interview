@@ -1,0 +1,411 @@
+{
+	"info": {
+		"_postman_id": "f6707a9d-6f5e-4570-b06e-bc05989b8a53",
+		"name": "Interview",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4750570"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"auth_token\", data.data.token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "test@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin@123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Divyang Dodiya",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "devxdodiya@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin@123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "Tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/task?page=3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"task"
+							],
+							"query": [
+								{
+									"key": "filter[status][0]",
+									"value": "New",
+									"disabled": true
+								},
+								{
+									"key": "filter[status][1]",
+									"value": "Incomplete",
+									"disabled": true
+								},
+								{
+									"key": "filter[status][2]",
+									"value": "Complete",
+									"disabled": true
+								},
+								{
+									"key": "filter[due_date]",
+									"value": "2023-12-27",
+									"disabled": true
+								},
+								{
+									"key": "filter[priority][0]",
+									"value": "High",
+									"disabled": true
+								},
+								{
+									"key": "filter[priority][1]",
+									"value": "Medium",
+									"disabled": true
+								},
+								{
+									"key": "filter[priority][2]",
+									"value": "Low",
+									"disabled": true
+								},
+								{
+									"key": "filter[notes]",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subject",
+									"value": "New Task",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "This is a long long description for this task.",
+									"type": "text"
+								},
+								{
+									"key": "start_date",
+									"value": "2023-12-17",
+									"type": "text"
+								},
+								{
+									"key": "due_date",
+									"value": "2023-12-27",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "New",
+									"type": "text"
+								},
+								{
+									"key": "priority",
+									"value": "High",
+									"type": "text"
+								},
+								{
+									"key": "notes[0][subject]",
+									"value": "First Note",
+									"type": "text"
+								},
+								{
+									"key": "notes[0][note]",
+									"value": "Note for First Note",
+									"type": "text"
+								},
+								{
+									"key": "notes[0][attachment][0][file]",
+									"type": "file",
+									"src": "/home/divyang/Pictures/ad_1.jpeg"
+								},
+								{
+									"key": "notes[0][attachment][1][file]",
+									"type": "file",
+									"src": "/home/divyang/Pictures/ad_1.jpeg"
+								},
+								{
+									"key": "notes[0][attachment][2][file]",
+									"type": "file",
+									"src": "/home/divyang/Pictures/ad_3.jpeg"
+								},
+								{
+									"key": "notes[1][subject]",
+									"value": "Second Note",
+									"type": "text"
+								},
+								{
+									"key": "notes[1][note]",
+									"value": "Note for Second Note",
+									"type": "text"
+								},
+								{
+									"key": "notes[1][attachment][0][file]",
+									"type": "file",
+									"src": "/home/divyang/Pictures/images.jpg"
+								},
+								{
+									"key": "notes[1][attachment][1][file]",
+									"type": "file",
+									"src": "/home/divyang/configurations.json"
+								},
+								{
+									"key": "notes[1][attachment][2][file]",
+									"type": "file",
+									"src": "/home/divyang/SEPA.xml"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/store/task",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"store",
+								"task"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "auth_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
